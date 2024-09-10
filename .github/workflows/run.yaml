@@ -1,0 +1,20 @@
+name: Run CallBoom in Action
+
+on: 
+  workflow_dispatch:
+  schedule:
+      - cron: '0 4 * * *'
+
+jobs:
+  Run:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run CallBoom Script
+        shell: cmd
+        env:
+          NUMBER: ${{ secrets.NUMBER }}
+          PYTHONIOENCODING: 'utf-8'
+        run:
+          CallBoom.exe
